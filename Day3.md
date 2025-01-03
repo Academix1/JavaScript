@@ -1,51 +1,33 @@
 ### `Functions Refactoring`
 ```javascript
-function add(a, b) {
-  return a + b;
-}
+ <script>
+    let currentInput = '';
+    
+    // Function to append values to the display
+    function appendToDisplay(value) {
+      currentInput += value;
+      document.getElementById('display').innerText = currentInput;
+    }
 
-function subtract(a, b) {
-  return a - b;
-}
+    // Function to clear the display
+    function clearDisplay() {
+      currentInput = '';
+      document.getElementById('display').innerText = '0';
+    }
 
-function multiply(a, b) {
-  return a * b;
-}
-
-function divide(a, b) {
-  return b !== 0 ? a / b : "Error: Division by zero!";
-}
-
-function calculate(operator) {
-  const num1 = parseFloat(document.getElementById('num1').value);
-  const num2 = parseFloat(document.getElementById('num2').value);
-
-  if (isNaN(num1) || isNaN(num2)) {
-    document.getElementById('result').innerText = "Error: Please enter valid numbers!";
-    return;
-  }
-
-  let result;
-  switch (operator) {
-    case '+':
-      result = add(num1, num2);
-      break;
-    case '-':
-      result = subtract(num1, num2);
-      break;
-    case '*':
-      result = multiply(num1, num2);
-      break;
-    case '/':
-      result = divide(num1, num2);
-      break;
-    default:
-      result = "Invalid operator!";
-  }
-
-  document.getElementById('result').innerText = `Result: ${result}`;
-}
+    // Function to calculate the result of the current input expression
+    function calculateResult() {
+      try {
+        currentInput = eval(currentInput).toString();
+        document.getElementById('display').innerText = currentInput;
+      } catch (e) {
+        document.getElementById('display').innerText = "Error";
+        currentInput = '';
+      }
+    }
+  </script>
 ```
+
 ### `Main Code`
 ```html
 <!DOCTYPE html>
@@ -54,66 +36,133 @@ function calculate(operator) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basic Calculator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background-color: #fff;
+      width: 260px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+    .display {
+      background-color: #222;
+      color: white;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      border-radius: 4px;
+      height: 40px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .button {
+      padding: 15px;
+      font-size: 18px;
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #e0e0e0;
+    }
+    .button:active {
+      background-color: #d0d0d0;
+    }
+    .button-clear {
+      background-color: #ff7043;
+      color: white;
+    }
+    .button-equal {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .button-operation {
+      background-color: #2196F3;
+      color: white;
+    }
+    .button-number {
+      background-color: #eeeeee;
+    }
+  </style>
 </head>
 <body>
-  <h1>Basic Calculator</h1>
-  <input id="num1" type="number" placeholder="First number">
-  <input id="num2" type="number" placeholder="Second number">
-  
-  <button onclick="calculate('+')">Add</button>
-  <button onclick="calculate('-')">Subtract</button>
-  <button onclick="calculate('*')">Multiply</button>
-  <button onclick="calculate('/')">Divide</button>
-
-  <h2 id="result">Result: </h2>
+  <div class="calculator">
+    <h1>Calculator</h1>
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <!-- Row 1 -->
+      <button class="button button-clear" onclick="clearDisplay()">C</button>
+      <button class="button button-operation" onclick="appendToDisplay('/')">/</button>
+      <button class="button button-operation" onclick="appendToDisplay('*')">*</button>
+      <button class="button button-operation" onclick="appendToDisplay('-')">-</button>
+      
+      <!-- Row 2 -->
+      <button class="button button-number" onclick="appendToDisplay('7')">7</button>
+      <button class="button button-number" onclick="appendToDisplay('8')">8</button>
+      <button class="button button-number" onclick="appendToDisplay('9')">9</button>
+      <button class="button button-operation" onclick="appendToDisplay('+')">+</button>
+      
+      <!-- Row 3 -->
+      <button class="button button-number" onclick="appendToDisplay('4')">4</button>
+      <button class="button button-number" onclick="appendToDisplay('5')">5</button>
+      <button class="button button-number" onclick="appendToDisplay('6')">6</button>
+      <button class="button button-equal" onclick="calculateResult()">=</button>
+      
+      <!-- Row 4 -->
+      <button class="button button-number" onclick="appendToDisplay('1')">1</button>
+      <button class="button button-number" onclick="appendToDisplay('2')">2</button>
+      <button class="button button-number" onclick="appendToDisplay('3')">3</button>
+      <button class="button button-number" onclick="appendToDisplay('0')">0</button>
+      
+      <!-- Row 5 -->
+      <button class="button button-number" onclick="appendToDisplay('.')">.</button>
+    </div>
+  </div>
 
   <script>
-    // Function Definitions
-    function add(a, b) {
-      return a + b;
+    let currentInput = '';
+    
+    // Function to append values to the display
+    function appendToDisplay(value) {
+      currentInput += value;
+      document.getElementById('display').innerText = currentInput;
     }
 
-    function subtract(a, b) {
-      return a - b;
+    // Function to clear the display
+    function clearDisplay() {
+      currentInput = '';
+      document.getElementById('display').innerText = '0';
     }
 
-    function multiply(a, b) {
-      return a * b;
-    }
-
-    function divide(a, b) {
-      return b !== 0 ? a / b : "Error: Division by zero!";
-    }
-
-    // Main Calculation Function
-    function calculate(operator) {
-      const num1 = parseFloat(document.getElementById('num1').value);
-      const num2 = parseFloat(document.getElementById('num2').value);
-
-      if (isNaN(num1) || isNaN(num2)) {
-        document.getElementById('result').innerText = "Error: Please enter valid numbers!";
-        return;
+    // Function to calculate the result of the current input expression
+    function calculateResult() {
+      try {
+        currentInput = eval(currentInput).toString();
+        document.getElementById('display').innerText = currentInput;
+      } catch (e) {
+        document.getElementById('display').innerText = "Error";
+        currentInput = '';
       }
-
-      let result;
-      switch (operator) {
-        case '+':
-          result = add(num1, num2);
-          break;
-        case '-':
-          result = subtract(num1, num2);
-          break;
-        case '*':
-          result = multiply(num1, num2);
-          break;
-        case '/':
-          result = divide(num1, num2);
-          break;
-        default:
-          result = "Invalid operator!";
-      }
-
-      document.getElementById('result').innerText = `Result: ${result}`;
     }
   </script>
 </body>
