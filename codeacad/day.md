@@ -133,21 +133,26 @@ function squareRoot() {
 }
 ```
 **Q6:** What is the difference between if and switch statements in JavaScript?
+
 **A**
 The if statement is used to evaluate expressions and execute code based on conditions that return a Boolean value (true or false). It can handle complex conditions, including comparisons between different values. The switch statement, on the other hand, is used to evaluate a single expression and match it against different possible values or cases. It's useful when you have multiple potential conditions based on the same value, and it avoids the need for multiple if statements.
 
 **Q7:** How do you handle multiple conditions in a single if statement?
+
 **A**
+
 ```javascript
 if (condition1 && condition2) {
   // Code to execute if both conditions are true
 }
 ```
 **Q8:** What does the else if statement allow you to do that a regular if statement cannot?
+
 **A**
 The else if statement allows you to evaluate multiple conditions in sequence. If the first if condition is false, the else if condition will be checked. This enables more than one condition to be tested and makes the code more readable when there are multiple related conditions to evaluate.
 
 **Q9:** What will happen if you omit the break statement in a switch block?
+
 **A**
 If you omit the break statement in a switch block, the program will continue executing subsequent case blocks even if a match was found. This is known as "fall-through" behavior, where the code will run until it hits a break or the end of the switch statement.
 
