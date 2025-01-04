@@ -39,13 +39,14 @@
    #### **Q3:** Create an object with a dynamic key color where the value of the key is "Red". Use a variable to store the key name.
    
    **A**
-    ```js
+    
+   ```js
        const key = 'color';
        const obj = {
          [key]: 'Red'
        };
        console.log(obj.color); // Red
-     ```
+   ```
   
    #### **Q4:** Create an object student with the following properties:
    - name: 'Alice'
@@ -53,7 +54,8 @@
    - address: a nested object with properties: street, city, and zipCode.
    
    **A**
-       ```js
+   
+   ```js
        const student = {
          name: 'Alice',
          age: 20,
@@ -64,12 +66,12 @@
          }
        };
        console.log(student);
-       ```
+   ```
    #### **Q5:** Create a constructor function Person that accepts name, age, and city as parameters and returns an object with those properties.
    
    **A**
      
-      ````js
+   ````js
      function Person(name, age, city) {
        this.name = name;
        this.age = age;
@@ -78,5 +80,6 @@
      const person1 = new Person('John', 28, 'New York');
      console.log(person1);
    
-      ````
+ ````
+
 ### Destructure of Objects
