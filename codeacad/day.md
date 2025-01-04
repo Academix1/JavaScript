@@ -81,5 +81,6 @@
      console.log(person1);
    
  ````
+---
 
 ### Destructure of Objects
