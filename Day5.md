@@ -129,6 +129,29 @@ document.getElementById('historyButton').addEventListener('click', displayHistor
     .history li {
       margin-bottom: 5px;
     }
+
+    /* History Button Styling */
+    #historyButton {
+      background-color: #2196F3;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      grid-column: span 4;
+      margin-top: 20px; /* Space it from the calculator */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visual */
+    }
+
+    #historyButton:hover {
+      background-color: #1976D2; /* Darker shade of blue on hover */
+    }
+
+    #historyButton:active {
+      background-color: #1565C0; /* Even darker shade on active click */
+    }
   </style>
 </head>
 <body>
@@ -176,19 +199,19 @@ document.getElementById('historyButton').addEventListener('click', displayHistor
     let history = []; // Array to store history of calculations
 
     // Function to append values to the display
-    function appendToDisplay(value) {
+    const appendToDisplay = (value) => {
       currentInput += value;
       document.getElementById('display').innerText = currentInput;
     }
 
     // Function to clear the display
-    function clearDisplay() {
+    const clearDisplay = () => {
       currentInput = '';
       document.getElementById('display').innerText = '0';
     }
 
     // Function to calculate the result of the current input expression
-    function calculateResult() {
+    const calculateResult = () => {
       try {
         const result = eval(currentInput).toString();
         // Store the calculation and result in history (insert at the beginning)
@@ -202,15 +225,15 @@ document.getElementById('historyButton').addEventListener('click', displayHistor
     }
 
     // Function to display the history
-    function displayHistory() {
+    const displayHistory = () => {
       const historyContainer = document.getElementById('history');
       const historyList = document.getElementById('historyList');
       historyList.innerHTML = ''; // Clear the current history list
 
       // Add each history item to the list (newest items first)
-      history.forEach((item) => {
+      history.forEach(({ expression, result }) => {
         const li = document.createElement('li');
-        li.textContent = `${item.expression} = ${item.result}`;
+        li.textContent = `${expression} = ${result}`;
         historyList.appendChild(li);
       });
 
@@ -219,7 +242,7 @@ document.getElementById('historyButton').addEventListener('click', displayHistor
     }
 
     // Event delegation: handle all button clicks
-    document.querySelector('.buttons').addEventListener('click', function(event) {
+    document.querySelector('.buttons').addEventListener('click', (event) => {
       const value = event.target.getAttribute('data-value');
       if (value) {
         appendToDisplay(value);
@@ -233,7 +256,7 @@ document.getElementById('historyButton').addEventListener('click', displayHistor
     });
 
     // Function to handle keyboard input
-    window.addEventListener('keydown', function(event) {
+    window.addEventListener('keydown', (event) => {
       const key = event.key;
       if ('0123456789'.includes(key)) {
         appendToDisplay(key);
@@ -251,4 +274,5 @@ document.getElementById('historyButton').addEventListener('click', displayHistor
   </script>
 </body>
 </html>
+
 ````
