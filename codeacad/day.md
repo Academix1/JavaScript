@@ -132,6 +132,59 @@ function squareRoot() {
   document.getElementById('result').innerText = `Result: ${result}`;
 }
 ```
+**Q6:** What is the difference between if and switch statements in JavaScript?
+**A**
+The if statement is used to evaluate expressions and execute code based on conditions that return a Boolean value (true or false). It can handle complex conditions, including comparisons between different values. The switch statement, on the other hand, is used to evaluate a single expression and match it against different possible values or cases. It's useful when you have multiple potential conditions based on the same value, and it avoids the need for multiple if statements.
+
+**Q7:** How do you handle multiple conditions in a single if statement?
+**A**
+```javascript
+if (condition1 && condition2) {
+  // Code to execute if both conditions are true
+}
+```
+**Q8:** What does the else if statement allow you to do that a regular if statement cannot?
+**A**
+The else if statement allows you to evaluate multiple conditions in sequence. If the first if condition is false, the else if condition will be checked. This enables more than one condition to be tested and makes the code more readable when there are multiple related conditions to evaluate.
+
+**Q9:** What will happen if you omit the break statement in a switch block?
+**A**
+If you omit the break statement in a switch block, the program will continue executing subsequent case blocks even if a match was found. This is known as "fall-through" behavior, where the code will run until it hits a break or the end of the switch statement.
+
+**Q10:** What is the syntax of the ternary operator in conditional statements?
+
+```js
+condition ? valueIfTrue : valueIfFalse;
+```
+**Q11:** Write a code to check if the entered values are valid numbers using isNaN(). If either value is not a valid number, display an error message.
+
+```js
+if (isNaN(num1) || isNaN(num2)) {
+  document.getElementById('result').innerText = "Error: Please enter valid numbers!";
+}
+```
+**Q12:**Write a code to handle an invalid operator in the calculation and display "Invalid operator!" as the result.
+
+```js
+let result;
+switch (operator) {
+  case '+':
+    result = num1 + num2;
+    break;
+  case '-':
+    result = num1 - num2;
+    break;
+  case '*':
+    result = num1 * num2;
+    break;
+  case '/':
+    result = num2 !== 0 ? num1 / num2 : "Error: Division by zero!";
+    break;
+  default:
+    result = "Invalid operator!";
+}
+document.getElementById('result').innerText = `Result: ${result}`;
+```
 
 ---
 
@@ -195,9 +248,27 @@ function operate(a, b, operator) {
       }
     }
 ```
+**Q6:** What would be the effect of pressing the Backspace key while entering an expression, and how can you implement this functionality?
+**A**
+```js
+if (key === 'Backspace') {
+  currentInput = currentInput.slice(0, -1);
+  document.getElementById('display').innerText = currentInput || '0';
+}
+```
+---
+### **Day 4: Events**
 ---
 
-### **Day 4: Events**
+ **Q1** How does the calculator update the display when a user clicks a button, and how does it handle appending values to the current input?
+
+```javascript
+  function appendToDisplay(value) {
+    currentInput += value;
+    document.getElementById('display').innerText = currentInput;
+  }
+``` 
+
 
 **Q1:** Replace all `onclick` attributes in the HTML with `addEventListener` in JavaScript.  
 **A:**  
@@ -230,8 +301,74 @@ document.querySelectorAll('button').forEach(button => {
 });
 ```
 
+**Q5:** Use querySelector to select an element with a specific class name and change its background color.
+**A:**
+```js
+const box = document.querySelector('.box');
+box.style.backgroundColor = 'red';
+```
+**Q6** Write an event listener that listens for a click event on a button with the ID submitButton and logs "Button clicked!" to the console.
+**A**
+```js
+document.querySelector('#submitButton').addEventListener('click', function() {
+  console.log('Button clicked!');
+});
+```
+**Q7:** Create an event listener for a keydown event that detects when the "Enter" key is pressed and displays an alert with the message "Enter key pressed!".
+**A**
+```js
+window.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    alert('Enter key pressed!');
+  }
+});
+```
+**Q8:** Write an event listener that triggers on mouseover for an element with the class hoverElement and changes its background color to blue.
+**A**
+```js
+document.querySelector('.hoverElement').addEventListener('mouseover', function() {
+  this.style.backgroundColor = 'blue';
+});
+```
+**Q9:** How do you reset the contents of a displayed element and clear a variable in JavaScript?
+**A**
+```js
+currentInput = '';
+document.getElementById('display').innerText = '0';
+```
+**Q10:** How do you evaluate a mathematical expression stored in a string and display the result in JavaScript?
+**A**
+```js
+currentInput = eval(currentInput).toString();
+document.getElementById('display').innerText = currentInput;
+```
+**Q11:**What is event delegation, and how can you use it to handle multiple button clicks with a single event listener?
+**A**
+```js
+document.querySelector('.buttons').addEventListener('click', function(event) {
+  const value = event.target.getAttribute('data-value');
+  // Handle button click logic
+});
+```
+**Q12:** How can you capture keyboard input and perform actions like appending digits or calculating results based on specific keys?
+**A**
+```js
+    window.addEventListener('keydown', function(event) {
+      const key = event.key;
+      if ('0123456789'.includes(key)) {
+        // Append key to display
+      } else if (key === 'Enter') {
+        // Calculate result
+      }
+    });
+```
+**Q13:** How would you apply BackSpace Logic and delete the last character from the input string in JavaScript?
+**A**
+```js
+currentInput = currentInput.slice(0, -1);
+document.getElementById('display').innerText = currentInput || '0';
+```
 ---
-
 ### **Day 5: Memory Feature with Objects**
 
 **Q1:** Implement a "Clear History" button to remove all saved calculations from the history.  
@@ -270,41 +407,67 @@ function redoLast() {
 localStorage.setItem('history', JSON.stringify(history));
 history = JSON.parse(localStorage.getItem('history') || '[]');
 ```
+**Q4:** How would you implement a feature that stores the user input before performing the calculation, allowing users to see their original input alongside the result?
+
+**A**
+```js
+let originalInput = ''; // Store the original user input
+function storeAndCalculate() {
+  originalInput = currentInput; // Store the current user input
+  const result = eval(currentInput); // Perform the calculation
+  history.push({ operation: originalInput, result }); // Save the operation and result to history
+  updateHistory(); // Update the history UI
+  currentInput = ''; // Clear the input after calculation
+}
+```
+**Q5:** How would you implement a "Reset" button that clears both the history and the current input?
+**A**
+
+```js
+    function resetCalculator() {
+      history = []; // Clear the history array
+      currentInput = ''; // Clear the current input
+      updateHistory(); // Update the history display to reflect the cleared history
+      document.getElementById('display').innerText = '0'; // Reset the display to '0'
+    }
+```
+**Q6:** How do you store a calculation history in an array?
+**A**
+
+```js
+history.unshift({ expression: currentInput, result: result });
+```
 
 ---
-
-### **Day 6: Arrow Functions and Destructure**
-
-**Q1:** Rewrite the operations using regular functions.  
-**A:**  
-```javascript
-function add(a, b) { return a + b; }
-function subtract(a, b) { return a - b; }
+**Q7:** How do you retrieve and display the history of calculations?
+**A**
+```js
+    history.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.expression} = ${item.result}`;
+      historyList.appendChild(li);
+    });
 ```
-
-**Q2:** Modify `calculate` to accept arguments as an object and destructure.  
-**A:**  
-```javascript
-function calculate({ num1, num2, operator }) {
-  const result = operator === '+' ? num1 + num2 : num1 - num2;
-  return result;
-}
+**Q8:** How would you toggle the visibility of the history section?
+**A**
+```js
+historyContainer.style.display = historyContainer.style.display === 'none' ? 'block' : 'none';
 ```
-
-**Q3:** Write a function to calculate the factorial of a number using recursion.  
-**A:**  
-```javascript
-const factorial = n => (n === 0 ? 1 : n * factorial(n - 1));
+**Q9:** How do you handle invalid calculations and display an error message?
+**A**
+```js
+    try {
+      const result = eval(currentInput).toString();
+      document.getElementById('display').innerText = result;
+    } catch (e) {
+      document.getElementById('display').innerText = "Error";
+      currentInput = '';
+    }
 ```
-
-**Q4:** Refactor the calculator to use object destructuring for history updates.  
-**A:**  
-```javascript
-function updateHistory({ operation, result }) {
-  history.push({ operation, result });
-  const p = document.createElement('p');
-  p.textContent = `${operation} = ${result}`;
-  document.getElementById('history').appendChild(p);
-}
+**Q10:** How do you clear the history of calculations?
+**A**
+```js
+history = [];
+updateHistory();
 ```
-
+---
