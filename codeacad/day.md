@@ -1,5 +1,5 @@
 
-### **Day 1: Basic Calculator using Operators**
+### **Day 1: Operators**
 
 **Q1:** Modify the calculator to subtract two numbers instead of adding them.  
 **A:**  
@@ -110,7 +110,7 @@ function squareRoot() {
 
 ---
 
-### **Day 3: Functions Refactoring**
+### **Day 3: Functions**
 
 **Q1:** Refactor the calculator to use separate functions for operations.  
 **A:**  
@@ -158,7 +158,7 @@ function operate(a, b, operator) {
 
 ---
 
-### **Day 4: Event-Driven Calculator**
+### **Day 4: Events**
 
 **Q1:** Replace all `onclick` attributes in the HTML with `addEventListener` in JavaScript.  
 **A:**  
