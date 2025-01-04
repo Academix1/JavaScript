@@ -220,6 +220,117 @@ const carInfo = new Map([
 const carInfoObject = Object.fromEntries(carInfo);
 console.log(carInfoObject);
 ```
+#### **Q5** You are given an array of products, where each product has a `name` and `price`.  
+- Write a function using the `map` method that adds a `discountedPrice` property to each product object. The discounted price should be 20% less than the original price.
+```js
+const products = [
+  { name: 'Product A', price: 100 },
+  { name: 'Product B', price: 200 },
+  { name: 'Product C', price: 300 }
+];
+```
 
+**A**
 
+```js
+const productsWithDiscount = products.map(product => {
+  const discountedPrice = product.price * 0.8;
+  return { ...product, discountedPrice };
+});
 
+console.log(productsWithDiscount);
+```
+
+#### **Q6:** You have an array of people objects, each containing firstName and lastName.
+ - Write a function that extracts only the firstName from each person and returns a new array containing the first names.
+
+```js
+   const people = [
+  { firstName: 'John', lastName: 'Doe' },
+  { firstName: 'Alice', lastName: 'Smith' },
+  { firstName: 'Bob', lastName: 'Johnson' }
+   ];
+```
+
+**A**
+
+```js
+const firstNames = people.map(person => person.firstName);
+console.log(firstNames);
+```
+#### **Q7:** You have an array of books, and each book has a title.
+- Write a function that uses map to convert the title of each book to uppercase.
+
+ ```js
+const books = [
+  { title: 'The Great Gatsby' },
+  { title: '1984' },
+  { title: 'To Kill a Mockingbird' }
+];
+```
+**A**
+
+```js
+const uppercaseTitles = books.map(book => {
+  return { title: book.title.toUpperCase() };
+});
+
+console.log(uppercaseTitles);
+```
+#### **Q8:** You are given an array of products, where each product contains name, category, and price.
+   - Write a function that returns a new array where each product's name is appended with the category and price, in the format: "name (category): price"
+```js
+const products = [
+  { name: 'Laptop', category: 'Electronics', price: 1000 },
+  { name: 'Shoes', category: 'Footwear', price: 50 },
+  { name: 'T-shirt', category: 'Clothing', price: 20 }
+];
+```
+**A**
+```js
+const formattedProducts = products.map(product => {
+  return `${product.name} (${product.category}): $${product.price}`;
+});
+
+console.log(formattedProducts);
+```
+#### **Q9:** Write a function that adds an ageGroup property to each user object. If their age is less than 18, the ageGroup should be "Minor". If their age is between 18 and 40, it should be "Adult", and if they are above 40, it should be "Senior".
+```js
+const users = [
+  { name: 'John', age: 15 },
+  { name: 'Alice', age: 30 },
+  { name: 'Bob', age: 50 }
+];
+```
+**A**
+
+```js
+const usersWithAgeGroup = users.map(user => {
+  let ageGroup;
+  if (user.age < 18) ageGroup = 'Minor';
+  else if (user.age <= 40) ageGroup = 'Adult';
+  else ageGroup = 'Senior';
+  
+  return { ...user, ageGroup };
+});
+
+console.log(usersWithAgeGroup);
+```
+#### **Q10:** Write a function using map that combines both firstName and lastName to create a new fullName property for each person. Return a new array of people with the fullName added
+
+```js
+const people = [
+  { firstName: 'John', lastName: 'Doe' },
+  { firstName: 'Alice', lastName: 'Smith' },
+  { firstName: 'Bob', lastName: 'Johnson' }
+];
+```
+**A**
+
+```js
+const peopleWithFullName = people.map(person => {
+  return { ...person, fullName: `${person.firstName} ${person.lastName}` };
+});
+
+console.log(peopleWithFullName);
+```
