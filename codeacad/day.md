@@ -11,7 +11,7 @@
      
    **A**
    
-         ```javascript
+   ```javascript
          const book = {
            title: "JavaScript Fundamentals",
            author: "John Doe",
@@ -19,7 +19,7 @@
            isAvailable: true
          };
          console.log(book);
-         ````
+   ````
    
    #### **Q2:** Add a method getDiscountedPrice to the object product which returns a discounted price (10% off) for a given price. The object has properties:
    - name: 'Laptop'
