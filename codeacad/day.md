@@ -80,7 +80,7 @@
      const person1 = new Person('John', 28, 'New York');
      console.log(person1);
    
- ````
+   ````
 ---
 
 ### Destructure of Objects
