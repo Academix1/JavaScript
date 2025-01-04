@@ -1,45 +1,254 @@
 ### Memory Feature With Objects
 
 ```javascript
-  let history = [];
+  let history = []; // Array to store history of calculations
 
-function calculate(operator) {
-  const num1 = parseFloat(document.getElementById('num1').value);
-  const num2 = parseFloat(document.getElementById('num2').value);
-
-  if (isNaN(num1) || isNaN(num2)) {
-    document.getElementById('result').innerText = "Error: Please enter valid numbers!";
-    return;
+// Function to calculate the result of the current input expression
+function calculateResult() {
+  try {
+    const result = eval(currentInput).toString();
+    // Store the calculation and result in history (insert at the beginning)
+    history.unshift({ expression: currentInput, result: result });
+    document.getElementById('display').innerText = result;
+    currentInput = '';
+  } catch (e) {
+    document.getElementById('display').innerText = "Error";
+    currentInput = '';
   }
-
-  let result;
-  switch (operator) {
-    case '+':
-      result = add(num1, num2);
-      break;
-    case '-':
-      result = subtract(num1, num2);
-      break;
-    case '*':
-      result = multiply(num1, num2);
-      break;
-    case '/':
-      result = divide(num1, num2);
-      break;
-  }
-
-  history.push({ operation: `${num1} ${operator} ${num2}`, result });
-  updateHistory();
-  document.getElementById('result').innerText = `Result: ${result}`;
 }
 
-function updateHistory() {
-  const historyDiv = document.getElementById('history');
-  historyDiv.innerHTML = '';
-  history.forEach(entry => {
-    const p = document.createElement('p');
-    p.textContent = `${entry.operation} = ${entry.result}`;
-    historyDiv.appendChild(p);
+// Function to display the history
+function displayHistory() {
+  const historyContainer = document.getElementById('history');
+  const historyList = document.getElementById('historyList');
+  historyList.innerHTML = ''; // Clear the current history list
+
+  // Add each history item to the list (newest items first)
+  history.forEach((item) => {
+    const li = document.createElement('li');
+    li.textContent = `${item.expression} = ${item.result}`;
+    historyList.appendChild(li);
   });
+
+  // Toggle the visibility of the history section
+  historyContainer.style.display = historyContainer.style.display === 'none' ? 'block' : 'none';
 }
+
+// Event listener for the History button
+document.getElementById('historyButton').addEventListener('click', displayHistory);
+
+
 ```
+
+````javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Calculator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background-color: #fff;
+      width: 260px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+    .display {
+      background-color: #222;
+      color: white;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      border-radius: 4px;
+      height: 40px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .button {
+      padding: 15px;
+      font-size: 18px;
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #e0e0e0;
+    }
+    .button:active {
+      background-color: #d0d0d0;
+    }
+    .button-clear {
+      background-color: #ff7043;
+      color: white;
+    }
+    .button-equal {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .button-operation {
+      background-color: #2196F3;
+      color: white;
+    }
+    .button-number {
+      background-color: #eeeeee;
+    }
+    .history {
+      margin-top: 20px;
+      display: none;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .history ul {
+      padding: 0;
+      list-style-type: none;
+    }
+    .history li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>Calculator</h1>
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <!-- Row 1 -->
+      <button class="button button-clear" id="clearButton">C</button>
+      <button class="button button-operation" data-value="/">/</button>
+      <button class="button button-operation" data-value="*">*</button>
+      <button class="button button-operation" data-value="-">-</button>
+      
+      <!-- Row 2 -->
+      <button class="button button-number" data-value="7">7</button>
+      <button class="button button-number" data-value="8">8</button>
+      <button class="button button-number" data-value="9">9</button>
+      <button class="button button-operation" data-value="+">+</button>
+      
+      <!-- Row 3 -->
+      <button class="button button-number" data-value="4">4</button>
+      <button class="button button-number" data-value="5">5</button>
+      <button class="button button-number" data-value="6">6</button>
+      <button class="button button-equal" id="equalButton">=</button>
+      
+      <!-- Row 4 -->
+      <button class="button button-number" data-value="1">1</button>
+      <button class="button button-number" data-value="2">2</button>
+      <button class="button button-number" data-value="3">3</button>
+      <button class="button button-number" data-value="0">0</button>
+      
+      <!-- Row 5 (History Button) -->
+      <button class="button" id="historyButton" style="grid-column: span 4;">History</button>
+    </div>
+
+    <!-- History Display -->
+    <div class="history" id="history">
+      <h3>History</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script>
+    let currentInput = '';
+    let history = []; // Array to store history of calculations
+
+    // Function to append values to the display
+    function appendToDisplay(value) {
+      currentInput += value;
+      document.getElementById('display').innerText = currentInput;
+    }
+
+    // Function to clear the display
+    function clearDisplay() {
+      currentInput = '';
+      document.getElementById('display').innerText = '0';
+    }
+
+    // Function to calculate the result of the current input expression
+    function calculateResult() {
+      try {
+        const result = eval(currentInput).toString();
+        // Store the calculation and result in history (insert at the beginning)
+        history.unshift({ expression: currentInput, result: result });
+        document.getElementById('display').innerText = result;
+        currentInput = '';
+      } catch (e) {
+        document.getElementById('display').innerText = "Error";
+        currentInput = '';
+      }
+    }
+
+    // Function to display the history
+    function displayHistory() {
+      const historyContainer = document.getElementById('history');
+      const historyList = document.getElementById('historyList');
+      historyList.innerHTML = ''; // Clear the current history list
+
+      // Add each history item to the list (newest items first)
+      history.forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.expression} = ${item.result}`;
+        historyList.appendChild(li);
+      });
+
+      // Toggle the visibility of the history section
+      historyContainer.style.display = historyContainer.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Event delegation: handle all button clicks
+    document.querySelector('.buttons').addEventListener('click', function(event) {
+      const value = event.target.getAttribute('data-value');
+      if (value) {
+        appendToDisplay(value);
+      } else if (event.target.id === 'clearButton') {
+        clearDisplay();
+      } else if (event.target.id === 'equalButton') {
+        calculateResult();
+      } else if (event.target.id === 'historyButton') {
+        displayHistory();
+      }
+    });
+
+    // Function to handle keyboard input
+    window.addEventListener('keydown', function(event) {
+      const key = event.key;
+      if ('0123456789'.includes(key)) {
+        appendToDisplay(key);
+      } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        appendToDisplay(key);
+      } else if (key === 'Enter') {
+        calculateResult();
+      } else if (key === 'Backspace') {
+        currentInput = currentInput.slice(0, -1);
+        document.getElementById('display').innerText = currentInput || '0';
+      } else if (key === 'Escape') {
+        clearDisplay();
+      }
+    });
+  </script>
+</body>
+</html>
+````

@@ -11,17 +11,18 @@ function calculate() {
 }
 ```
 
-**Q2:** What happens if you input non-numeric values? How can you handle this case?  
+**Q2:** What happens if you input non-numeric values? How can you handle this case using Ternary Operator?  
+
 **A:**  
 ```javascript
 function calculate() {
   const a = +document.getElementById('num1').value;
   const b = +document.getElementById('num2').value;
-  if (isNaN(a) || isNaN(b)) {
-    document.getElementById('result').innerText = "Error: Enter valid numbers!";
-    return;
-  }
-  document.getElementById('result').innerText = `Result: ${a + b}`;
+  
+  // Using ternary operator for validation
+  isNaN(a) || isNaN(b) 
+    ? document.getElementById('result').innerText = "Error: Enter valid numbers!" 
+    : document.getElementById('result').innerText = `Result: ${a + b}`;
 }
 ```
 
@@ -46,25 +47,49 @@ function divide() {
 }
 ```
 
-**Q5:** Add input validation to prevent empty fields.  
+**Q5:** Add input validation to prevent empty fields using Ternary  Operator.  
 **A:**  
+
 ```javascript
 function calculate() {
   const a = document.getElementById('num1').value;
   const b = document.getElementById('num2').value;
-  if (a === '' || b === '') {
-    document.getElementById('result').innerText = "Error: Fields cannot be empty!";
+
+  a === '' || b === '' 
+    ? document.getElementById('result').innerText = "Error: Fields cannot be empty!" 
+    : document.getElementById('result').innerText = `Result: ${+a + +b}`;
+}
+
+```
+**Q6:** Modify the calculator to handle negative numbers, ensuring correct calculation for inputs like -5 + 3
+
+**A:**  
+
+````js
+function calculate() {
+  const a = +document.getElementById('num1').value;
+  const b = +document.getElementById('num2').value;
+  if (isNaN(a) || isNaN(b)) {
+    document.getElementById('result').innerText = "Error: Enter valid numbers!";
     return;
   }
-  document.getElementById('result').innerText = `Result: ${+a + +b}`;
+  document.getElementById('result').innerText = `Result: ${a + b}`;
 }
-```
+````
+**Q7:** What is the purpose of the isNaN() function in JavaScript, and when should it be used?
+
+**A:**
+
+The isNaN() function is used to check if a value is NaN (Not-a-Number). It returns true if the value is NaN and false otherwise.
+
+It's commonly used for input validation when working with numeric values, especially in user inputs or operations that may result in invalid numbers (e.g., division by zero or invalid text inputs).
 
 ---
 
 ### **Day 2: Conditional Enhancements**
 
 **Q1:** Add a button for modulo (`%`) operation in the calculator. Update the `switch` statement to handle it.  
+
 **A:**  
 ```javascript
 case '%':
@@ -155,7 +180,21 @@ function operate(a, b, operator) {
   }
 }
 ```
+**Q5:** Write a JavaScript function calculateResult
+- Evaluates the current mathematical expression inputted by the user and updates the display with the result.
 
+- If the expression is invalid, display the word "Error" on the screen, and clear the current input.
+```js
+ function calculateResult() {
+      try {
+        currentInput = eval(currentInput).toString();
+        document.getElementById('display').innerText = currentInput;
+      } catch (e) {
+        document.getElementById('display').innerText = "Error";
+        currentInput = '';
+      }
+    }
+```
 ---
 
 ### **Day 4: Events**
