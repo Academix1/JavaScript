@@ -140,6 +140,7 @@ function calculate(operator) {
   - If the numbers are outside the range, display a warning message using if-else conditions.
 
 ---
-//Codeium Exercise
+### Codeium Exercise
+
 5. **Exercise 5: Implement the Same Code With If-Else Condition for Opertaors**
    - Update the Logic to Write If-Else Condition for Operator Selection Instead of Switch Cases
