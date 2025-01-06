@@ -129,17 +129,19 @@ document.getElementById('result').innerText = `Result: ${a + b}`;
 ---
 
 ### **Step 3: Interactive Exercises**
-1. **Exercise 1: Add More Operations**
+
+1. **Exercise 1:** Recreate the Basic Calculator
+  - Recreate the Basic Calculator functionality by writing the entire code yourself. Follow the steps below to create a simple calculator that performs addition.
+  - Use VsCode Editor and Try to Recreate the same Calculator Logic
+
+---
+
+2. **Exercise 2: Add More Operations**
    - Modify the code to include subtraction, multiplication, and division buttons.
    - **Hint**: Create additional functions like `subtract()`, `multiply()`, and `divide()`.
 
 ---
 
-2. **Exercise 2: Error Handling**
-   - If one or both fields are empty, display an error message.
-   - **Hint**: Use an `if` condition to check if `a` or `b` is empty.
-
----
 
 3. **Exercise 3: Style the Page**
    - Use CSS to style the calculator (e.g., center it, add a background color).
@@ -147,15 +149,6 @@ document.getElementById('result').innerText = `Result: ${a + b}`;
 
 ---
 
-4. **Exercise 4: Display a History**
-   - Show the previous calculations below the result.
-   - **Hint**: Use an array to store results and a `<div>` to display them.
 
----
 
-5. **Exercise 5: Add Input Validation**
-   - Ensure only numbers are entered. Show an alert for invalid input.
-   - **Hint**: Use `isNaN(a)` to check if `a` is not a number.
-
----
 ```
