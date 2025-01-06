@@ -136,19 +136,15 @@ document.getElementById('result').innerText = `Result: ${a + b}`;
 
 ---
 
-2. **Exercise 2: Add More Operations**
-   - Modify the code to include subtraction, multiplication, and division buttons.
-   - **Hint**: Create additional functions like `subtract()`, `multiply()`, and `divide()`.
-
----
-
-
-3. **Exercise 3: Style the Page**
+2. **Exercise 2: Style the Page**
    - Use CSS to style the calculator (e.g., center it, add a background color).
    - **Hint**: Add `<style>` tags inside `<head>`.
 
 ---
 
 
+3. **Exercise 3: Add More Operations**
+   - Modify the code to include subtraction, multiplication, and division buttons.
+   - **Hint**: Create additional functions like `subtract()`, `multiply()`, and `divide()`.
 
-```
+---
