@@ -138,3 +138,8 @@ function calculate(operator) {
 4. **Exercise 4:** Implement a Range Checker with If-Else Conditions
   - Modify the calculator to ensure the input numbers fall within a specified range before performing any calculation.
   - If the numbers are outside the range, display a warning message using if-else conditions.
+
+---
+
+5. **Exercise 5: Implement the Same Code With If-Else Condition for Opertaors **
+   - Update the Logic to Write If-Else Condition for Operator Selection Instead of Switch Cases
