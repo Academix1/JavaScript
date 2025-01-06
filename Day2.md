@@ -129,7 +129,7 @@ function calculate(operator) {
 ---
 
 
-3. **Exercise 3: Add More Cases **
+3. **Exercise 3: Add More Cases** 
    - Modify the code to include Modulus, Square, and  Sqrt.
    - **Hint**: Create additional functions like `%`, `^`, and `sqrt`.
 
