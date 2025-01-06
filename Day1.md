@@ -131,8 +131,8 @@ document.getElementById('result').innerText = `Result: ${a + b}`;
 ### **Step 3: Interactive Exercises**
 
 1. **Exercise 1:** Recreate the Basic Calculator
-  - Recreate the Basic Calculator functionality by writing the entire code yourself. Follow the steps below to create a simple calculator that performs addition.
-  - Use VsCode Editor and Try to Recreate the same Calculator Logic
+     - Recreate the Basic Calculator functionality by writing the entire code yourself. Follow the steps below to create a simple calculator that performs addition.
+     - **Hint**: Use VsCode Editor and Try to Recreate the same Calculator Logic
 
 ---
 
