@@ -134,3 +134,7 @@ function calculate(operator) {
    - **Hint**: Create additional functions like `%`, `^`, and `sqrt`.
 
 ---
+
+4. **Exercise 4:** Implement a Range Checker with If-Else Conditions
+  - Modify the calculator to ensure the input numbers fall within a specified range before performing any calculation.
+  - If the numbers are outside the range, display a warning message using if-else conditions.
