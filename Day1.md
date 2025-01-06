@@ -158,7 +158,4 @@ document.getElementById('result').innerText = `Result: ${a + b}`;
    - **Hint**: Use `isNaN(a)` to check if `a` is not a number.
 
 ---
-
-
-
 ```
