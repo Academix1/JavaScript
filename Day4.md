@@ -225,5 +225,29 @@ window.addEventListener('keydown', function(event) {
   </script>
 </body>
 </html>
+```
+
+### **Step 3: Interactive Exercises**
+
+1. **Exercise 1:** Recreate the Basic Calculator With EventListeners
+     - Recreate the Basic Calculator functionality by writing the entire code yourself. Follow the steps below to create a simple calculator that performs addition.
+     - **Hint**: Use VsCode Editor and Try to Recreate the same Calculator Logic
+
+---
+
+2. **Exercise 2: Style the Page**
+   - Use CSS to style the calculator (e.g., center it, add a background color).
+   - **Hint**: Add `<style>` tags inside `<head>`.
+
+---
+
+
+3. **Exercise 3: Add Mouseup and Mousedown  EventListeners to Button** 
+   - Modify the code to include Mouseup and Change Size on Hover to Buttons
+   - **Hint**: Create additional function like `X`.
+
+---
+
+
 
 ```
