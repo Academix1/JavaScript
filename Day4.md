@@ -244,10 +244,7 @@ window.addEventListener('keydown', function(event) {
 
 3. **Exercise 3: Add Mouseup and Mousedown  EventListeners to Button** 
    - Modify the code to include Mouseup and Change Size on Hover to Buttons
-   - **Hint**: Create additional function like `X`.
 
 ---
 
 
-
-```
