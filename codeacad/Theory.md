@@ -5,235 +5,168 @@
 ### **1. Variables (`let`, `const`, `var`)**
 
 1. **What is the difference between `var`, `let`, and `const`?**  
-   **Answer:**  
-   - `var` has function scope and is hoisted.  
-   - `let` has block scope and is not hoisted like `var`.  
-   - `const` has block scope and cannot be reassigned.
+   - `var` has **function scope** and is **hoisted**. It can be re-declared within the same scope, which can lead to unexpected behavior.
+   - `let` and `const` have **block scope** and are not hoisted like `var`. `let` can be reassigned, but `const` cannot.
+   
+2. **How does hoisting work in JavaScript?**  
+   Hoisting is when JavaScript moves variable and function declarations to the top of their scope during execution. However, only `var` declarations are hoisted, not their initializations.
 
-2. **Can a `const` variable be modified?**  
-   **Answer:**  
-   The reference of a `const` variable cannot be changed, but the contents of objects or arrays it refers to can be modified.
+3. **What is the Temporal Dead Zone (TDZ) in JavaScript?**  
+   The **Temporal Dead Zone** is the time between entering the scope and the actual declaration of a variable declared with `let` or `const`. During this period, the variable is not accessible and trying to access it results in a `ReferenceError`.
 
-3. **What is variable hoisting?**  
-   **Answer:**  
-   Variables declared with `var` are hoisted to the top of their scope, meaning they can be accessed before their declaration but will be `undefined`.
+4. **Why is it preferred to use `let` and `const` over `var`?**  
+   `let` and `const` provide block-level scoping, which avoids unexpected behavior. `const` guarantees that a variable will not be reassigned, which leads to safer and more predictable code.
 
-4. **What is the temporal dead zone?**  
-   **Answer:**  
-   It is the period between the entering of a block scope and the actual declaration of `let` or `const` where accessing the variable will throw a `ReferenceError`.
+5. **What is the significance of the `const` keyword?**  
+   `const` declares a variable that cannot be reassigned after initialization, providing a way to ensure immutability for variables that should not change during the program’s execution.
 
-5. **What happens if you re-declare a `var` variable?**  
-   **Answer:**  
-   It overwrites the previous declaration, which can lead to bugs.
+6. **Can a `const` variable hold mutable values?**  
+   Yes, a `const` variable can hold mutable values like objects or arrays, meaning you can change the content of the object or array, but you cannot reassign the variable itself to a different value.
 
-6. **Can you declare a `let` or `const` variable without initializing it?**  
-   **Answer:**  
-   `let` can be declared without initialization, but `const` must be initialized during declaration.
+7. **What happens when you redeclare a `let` variable?**  
+   Redeclaring a `let` variable in the same block scope results in a `SyntaxError` because `let` does not allow redeclaration in the same scope.
 
-7. **What is the scope of a `let` variable declared inside a loop?**  
-   **Answer:**  
-   It is confined to the block of the loop.
-
-8. **Can `var` and `let` variables be accessed outside their block?**  
-   **Answer:**  
-   `var` can be accessed outside its block if it is in a function, but `let` is block-scoped.
-
-9. **Why should you use `let` or `const` over `var`?**  
-   **Answer:**  
-   They provide better scoping, prevent accidental re-declarations, and reduce bugs.
-
-10. **Can you update the value of a `let` variable?**  
-    **Answer:**  
-    Yes, you can update its value but not re-declare it within the same scope.
+8. **What is the difference between global and local scope in JavaScript?**  
+   **Global scope** refers to variables or functions accessible throughout the entire program. **Local scope** refers to variables or functions confined to a specific block, function, or block scope (like within loops, functions, or conditionals).
 
 ---
 
 ### **2. Functions**
 
-1. **What are the two main ways to define functions?**  
-   **Answer:**  
-   Function declarations and function expressions.
+1. **What is the difference between a function declaration and a function expression?**  
+   - **Function declarations** are hoisted, meaning they can be used before they appear in the code.  
+   - **Function expressions** are not hoisted and can only be called after they are defined.
 
-2. **What is the difference between a function declaration and a function expression?**  
-   **Answer:**  
-   Declarations are hoisted, while expressions are not.
+2. **What is the purpose of the `this` keyword inside a function?**  
+   The `this` keyword refers to the **context** in which the function was called. In an object method, `this` refers to the object; in regular functions, it refers to the global object (or `undefined` in strict mode).
 
-3. **What is an arrow function?**  
-   **Answer:**  
-   A concise syntax for writing functions. It doesn’t bind its own `this`.
+3. **What are higher-order functions in JavaScript?**  
+   Higher-order functions are functions that take other functions as arguments or return functions. They enable functional programming patterns like map, filter, and reduce.
 
-4. **Can a function return another function?**  
-   **Answer:**  
-   Yes, functions in JavaScript are first-class citizens.
+4. **What are closures in JavaScript?**  
+   A closure is a function that retains access to its lexical scope, even when the function is executed outside of that scope. Closures allow functions to "remember" the environment in which they were created.
 
-5. **What is a higher-order function?**  
-   **Answer:**  
-   A function that takes another function as an argument or returns a function.
+5. **What are default parameters in functions?**  
+   Default parameters allow a function to be called with fewer arguments than it expects. If an argument is not provided, the function will use the default value specified in the parameter.
 
-6. **What is a callback function?**  
-   **Answer:**  
-   A function passed as an argument to another function to be executed later.
+6. **What is recursion in JavaScript?**  
+   Recursion is when a function calls itself in order to solve a problem. It's used when a task can be divided into smaller, similar sub-tasks (e.g., calculating factorial or traversing tree structures).
 
-7. **What is the default parameter in a function?**  
-   **Answer:**  
-   A default value assigned to a parameter if no value is passed.
+7. **How are function parameters passed in JavaScript?**  
+   JavaScript function parameters are passed by **value** for primitive types (e.g., numbers, strings) and **reference** for non-primitive types (e.g., objects, arrays).
 
-8. **What is recursion in functions?**  
-   **Answer:**  
-   A function calling itself.
+8. **What is the difference between `function` and `arrow` functions?**  
+   Arrow functions are a more concise way to write functions and do not have their own `this` context, unlike regular functions that create a new `this` context each time they are called.
 
-9. **Can functions have properties?**  
-   **Answer:**  
-   Yes, as functions are objects in JavaScript.
+9. **What is the use of the `arguments` object in functions?**  
+   The `arguments` object is an array-like object that contains all the arguments passed to a function, even if they are not explicitly defined in the function's parameter list.
 
-10. **How do closures work?**  
-    **Answer:**  
-    A closure is a function that retains access to its lexical scope even when executed outside of it.
+10. **How does JavaScript handle `this` in arrow functions?**  
+    Arrow functions do not have their own `this`. Instead, they inherit `this` from the enclosing execution context. This behavior makes arrow functions ideal for situations where you want to maintain the same `this` value across functions.
 
 ---
 
-### **3. Switch Case and Conditionals**
+### **3. Switch Case & Conditionals**
 
-1. **What is the syntax of a `switch` statement?**  
-   **Answer:**  
-   ```javascript
-   switch(expression) {
-       case value1:
-           // code
-           break;
-       case value2:
-           // code
-           break;
-       default:
-           // code
-   }
-   ```
+1. **What is the purpose of the `if-else` statement?**  
+   The `if-else` statement is used to execute different blocks of code based on whether a specified condition evaluates to `true` or `false`.
 
-2. **What is the role of the `break` statement?**  
-   **Answer:**  
-   It exits the `switch` after a matched case to prevent fall-through.
+2. **How does the `switch` statement work?**  
+   The `switch` statement evaluates an expression and matches it with one of several `case` labels. If a match is found, the corresponding block of code is executed.
 
-3. **What happens if `break` is omitted?**  
-   **Answer:**  
-   The code for all subsequent cases will execute until a `break` is encountered.
+3. **What is the difference between `switch` and `if-else`?**  
+   `switch` is ideal for checking a single variable against multiple potential values. It is often used when there are multiple possible outcomes. `if-else` is more flexible and can evaluate complex conditions.
 
-4. **Can a `switch` statement evaluate expressions?**  
-   **Answer:**  
-   Yes, the `switch` can evaluate any expression.
+4. **Why is the `default` case used in a `switch` statement?**  
+   The `default` case is executed when none of the `case` labels match the evaluated expression. It's typically used to handle unexpected values.
 
-5. **What is the purpose of the `default` case?**  
-   **Answer:**  
-   It runs when no other cases match.
+5. **How does the `break` statement work in a `switch`?**  
+   The `break` statement is used to terminate the `switch` statement. Without `break`, the code will "fall through" and execute all subsequent cases, even if they don't match.
 
-6. **What is the difference between `if-else` and `switch`?**  
-   **Answer:**  
-   `if-else` handles complex conditions, while `switch` is better for discrete values.
+6. **What is the role of logical operators (`&&`, `||`) in `if` statements?**  
+   Logical operators combine multiple conditions in an `if` statement. `&&` (AND) ensures all conditions must be true, while `||` (OR) ensures at least one condition must be true.
 
-7. **Can multiple cases execute the same code?**  
-   **Answer:**  
-   Yes, by not using `break`.
+7. **How do ternary operators work in JavaScript?**  
+   The ternary operator is a shorthand for `if-else` statements. It takes the form `condition ? value_if_true : value_if_false`.
 
-8. **Can `switch` handle ranges?**  
-   **Answer:**  
-   No, but you can use `if-else` for ranges.
+8. **What is the purpose of `else if` in conditionals?**  
+   `else if` allows you to check multiple conditions in sequence. It follows an `if` statement and allows you to handle multiple, mutually exclusive conditions.
 
-9. **What happens if no cases match and there is no `default`?**  
-   **Answer:**  
-   The `switch` does nothing.
+9. **What happens if no `case` matches in a `switch` statement?**  
+   If no `case` matches the expression, the code will proceed to the `default` case (if provided) or skip the entire `switch` block.
 
-10. **Is `switch` faster than `if-else`?**  
-    **Answer:**  
-    For many discrete values, `switch` can be faster due to optimized code execution.
+10. **Can you use expressions or conditions in the `case` of a `switch`?**  
+    No, the `case` labels in a `switch` statement must be constant values or expressions that can be evaluated at compile time.
 
 ---
 
-### **4. EventListeners**
+### **4. Event Listeners**
 
-1. **What is an event listener?**  
-   **Answer:**  
-   A function that waits for an event to occur.
+1. **What is the purpose of an event listener?**  
+   An event listener is a function that waits for a specific event to occur, such as a click or mouse movement, and triggers a callback function when the event happens.
 
-2. **What is the syntax for `addEventListener`?**  
-   **Answer:**  
-   ```javascript
-   element.addEventListener('event', callbackFunction);
-   ```
+2. **How do event listeners differ from inline event handlers?**  
+   Event listeners are added through JavaScript, providing flexibility and the ability to attach multiple listeners to the same event, while inline event handlers are written directly in the HTML markup.
 
-3. **What is the difference between `addEventListener` and `onclick`?**  
-   **Answer:**  
-   `addEventListener` allows multiple listeners for the same event, while `onclick` replaces any existing handler.
+3. **What is event propagation in JavaScript?**  
+   Event propagation refers to the process by which an event is passed from the target element to the root of the DOM tree. This process includes **bubbling** (from target to root) and **capturing** (from root to target).
 
-4. **How do you remove an event listener?**  
-   **Answer:**  
-   Use `removeEventListener`.
+4. **What is event bubbling?**  
+   Event bubbling is the phase of event propagation where the event starts at the target element and bubbles up to the root of the DOM, triggering event listeners along the way.
 
-5. **What is event propagation?**  
-   **Answer:**  
-   The flow of events through the DOM (capturing and bubbling).
+5. **What is event capturing?**  
+   Event capturing is the opposite of event bubbling. The event starts from the root and propagates down to the target element. This is a less commonly used propagation method.
 
-6. **What is event bubbling?**  
-   **Answer:**  
-   The event flows from the target to the root.
+6. **Can you prevent an event from propagating?**  
+   Yes, you can stop the event from propagating by using `event.stopPropagation()`, which prevents the event from reaching other listeners in the propagation chain.
 
-7. **What is event capturing?**  
-   **Answer:**  
-   The event flows from the root to the target.
+7. **What is the difference between `addEventListener` and `onclick`?**  
+   - `addEventListener` allows multiple event listeners for the same event on an element.  
+   - `onclick` can only be used to assign a single event handler to an element, and any subsequent assignments will overwrite the previous one.
 
-8. **Can you stop propagation?**  
-   **Answer:**  
-   Yes, using `event.stopPropagation()`.
+8. **What is the purpose of the `this` keyword in event listeners?**  
+   In event listeners, `this` refers to the **element** to which the event listener is attached, making it useful to reference properties or methods of that element.
 
-9. **How do you handle keyboard events?**  
-   **Answer:**  
-   Use `keydown`, `keyup`, or `keypress`.
+9. **What are passive event listeners, and why are they important?**  
+   Passive event listeners improve performance by indicating that the listener will not call `preventDefault()`, allowing the browser to optimize certain interactions, like scrolling.
 
-10. **What is the `this` value inside an event listener?**  
-    **Answer:**  
-    It refers to the element the listener is bound to.
+10. **How do you handle multiple events on the same element?**  
+    You can use multiple event listeners to handle different types of events on the same element, such as `click`, `mouseover`, and `keydown`, each triggering a different function.
 
 ---
 
 ### **5. Objects, Arrays, Maps, and Destructuring**
 
-**Objects:**
-1. **How do you define an object?**  
-   **Answer:**  
-   Using `{ key: value }` syntax.
+1. **What is an object in JavaScript?**  
+   An object is a collection of key-value pairs, where the keys are strings (or Symbols) and the values can be any data type, including functions, arrays, or other objects.
 
-2. **What are the two ways to access properties?**  
-   **Answer:**  
-   Dot notation and bracket notation.
+2. **What is array destructuring in JavaScript?**  
+   Array destructuring allows you to unpack values from arrays into separate variables, making it easier to extract elements from an array.
 
-3. **Can you add properties to an object dynamically?**  
-   **Answer:**  
-   Yes, using `object.propertyName = value`.
+3. **What is the difference between `Map` and an object?**  
+   A `Map` allows any type of key, while an object only supports string and Symbol keys. `Map` also maintains the insertion order of key-value pairs.
 
-4. **What is object destructuring?**  
-   **Answer:**  
-   Extracting properties from objects into variables.
+4. **What is the purpose of the `has` method in a `Map`?**  
+   The `has` method is used to check whether a specific key exists in a `Map`, returning `true` if the key is found and `false` otherwise.
 
-**Arrays:**
-5. **How do you add elements to an array?**  
-   **Answer:**  
-   Using `push` or `unshift`.
+5. **What is the purpose of the `get` method in a `Map`?**  
+   The `get` method is used to retrieve the value associated with a specific key in a `Map`.
 
-6. **What is the difference between `map` and `filter`?**  
-   **Answer:**  
-   `map` transforms elements; `filter` removes elements.
+6. **What is an array in JavaScript?**  
+   An array is an ordered collection of values, where each value is accessed by its index, starting from 0. Arrays can contain elements of any data type.
 
-7. **What is array destructuring?**  
-   **Answer:**  
-   Extracting elements into variables.
+7. **What is object destructuring?**  
+   Object destructuring allows you to extract values from an object and assign them to variables, making it easier to work with complex objects.
 
-**Maps:**
-8. **What is a `Map`?**  
-   **Answer:**  
-   A collection of key-value pairs.
+8. **Can you change the properties of a `const` object?**  
+   Yes, while a `const` object cannot be reassigned to a new object, you can modify the properties of the object itself.
 
-9. **How do you iterate over a `Map`?**  
-   **Answer:**  
-   Using `for...of` or `.forEach`.
+9. **What are the advantages of using `Map` over objects?**  
+   - `Map` allows any data type as keys.  
+   - `Map` maintains the insertion order of keys.  
+   - `Map` provides built-in methods like `.set()`, `.get()`, and `.has()`, making it easier to work with key-value pairs.
 
-10. **What is the use of the `has` method in `Map`?**  
-    **Answer:**  
-    To check if a key exists.
+10. **How do you iterate over an object’s properties?**  
+    You can use `for...in` loops or `Object.keys()`, `Object.values()`, or `Object.entries()` to iterate over an object's properties.
+
+---
