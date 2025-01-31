@@ -332,7 +332,7 @@
 
 
 
-### `Day 3 Code (Implemented EventListeners)`
+### `Day 4 Code (Implemented EventListeners)`
 ```html
 <!DOCTYPE html>
 <html lang="en">
