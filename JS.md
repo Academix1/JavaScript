@@ -175,7 +175,7 @@
 ```
 ---
 
-### ` Day3 Code (Added Buttons) `
+### ` Day3 Code (Added Functions and Buttons) `
 ```html
 <!DOCTYPE html>
 <html lang="en">
